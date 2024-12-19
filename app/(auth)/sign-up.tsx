@@ -7,6 +7,7 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, Image, ScrollView, StatusBar, Text, View } from "react-native";
+import { fetchAPI } from "@/lib/fetch";
 
 const SignUp = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -49,6 +50,16 @@ const SignUp = () => {
       });
 
       if (signUpAttempt.status === "complete") {
+        // Create a database user
+        await fetchAPI("/(api)/user", {
+          method: "POST",
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            clerkId: signUpAttempt.createdUserId,
+          }),
+        });
+
         await setActive({ session: signUpAttempt.createdSessionId });
         setVarification({ ...varification, state: "success" });
       } else {
