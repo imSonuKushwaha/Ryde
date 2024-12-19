@@ -18,16 +18,17 @@ export async function POST(request: Request) {
         email,
         clerk_id
       )
-      VLAUES(
-        ${name}
-        ${email}
+      VALUES (
+        ${name},
+        ${email},
         ${clerkId}
-      )
-    `;
+     );`;
 
-    return new Response(JSON.stringify({ data: response }), { status: 201 });
+    return new Response(JSON.stringify({ data: response }), {
+      status: 201,
+    });
   } catch (error) {
-    console.log(error);
-    return Response.json({ error: error }, { status: 500 });
+    console.error("Error creating user:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
