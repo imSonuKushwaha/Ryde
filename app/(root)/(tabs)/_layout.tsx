@@ -32,8 +32,9 @@ export default function TabsLayout() {
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: "#333333",
+          opacity: 0.9,
           borderRadius: 50,
-          overflow: "hidden",
+          overflow: "visible",
           marginHorizontal: 20,
           marginBottom: 20,
           height: 78,
@@ -42,9 +43,10 @@ export default function TabsLayout() {
           justifyContent: "space-between",
           alignItems: "center",
           position: "absolute",
-          paddingBottom: 0,
+          paddingBottom: 25,
           paddingTop: 0,
         },
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen

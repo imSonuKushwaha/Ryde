@@ -1,7 +1,7 @@
 import ReactNativeModal from "react-native-modal";
 import CustomButton from "@/components/customButton";
 import InputField from "@/components/inputField";
-import OAuth from "@/components/OAuth";
+import OAuth from "@/components/oAuth";
 import { icons, images } from "@/constants";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, router } from "expo-router";
