@@ -4,6 +4,7 @@ import { useLocationStore, userDriverStore } from "@/store";
 import { MarkerData } from "@/types/type";
 import { useEffect, useState } from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { StyleSheet } from "react-native";
 
 const drivers = [
   {
@@ -71,6 +72,9 @@ const Map = () => {
   });
 
   useEffect(() => {
+    // TODO: remove this when fetching drivers from API
+    setDrivers(drivers);
+
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 
@@ -87,7 +91,7 @@ const Map = () => {
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
-      className="w-full h-full rounded-2xl "
+      style={styles.map}
       mapType="standard"
       tintColor="black"
       showsPointsOfInterest={false}
@@ -111,5 +115,16 @@ const Map = () => {
     </MapView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
 
 export default Map;
